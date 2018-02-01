@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fileReder</title>
+
+</head>
+
+<body>
+    <form action="" id="img">
+        <div id="imgBox"></div>
+        <input type="file" id="upFile" name="photo" multiple>
+        <br/>
+        <button id="uploading" type="button">上传</button>
+    </form>
+
+    <script src="jquery-3.2.1.min.js"></script>
+    <script>
+        $(function () {
+            var file = "";
+            var data = new FormData();
+            $("#upFile").on("change", function () {
+                console.log(99);
+                //存储文件的数组
+                var fileArr = [];
+                // //创建fileReder对象
+                // var fr = new FileReader;
+                //获取上传的文件
+                file = this.files;
+                for (var key in file) {
+                    fileArr.push(file[key]);
+                    data.append(key, file[key]);
+                }
+                console.log(file, fileArr);
+                /*遍历file读取文件*/
+                fileArr.forEach(function (value, index, array) {
+                    //创建fileReder对象
+                    var fr = new FileReader;
+                    //读取文件内容
+                    fr.readAsDataURL(value);
+                    //读取完成
+                    fr.onload = function (data) {
+                        // console.log(fr.result);
+                        // $("img").attr("src", fr.result);
+                        $("#imgBox").append("<img src='" + fr.result + "'/>")
+                    }
+                });
+            });
+
+            // console.log($("#img")[0]);
+            // var data = new FormData($("#img")[0]);
+            $("#uploading").on("click", function () {
+                console.log(data);
+                $.ajax({
+                    url: "./myupload.php",
+                    type: "POST",
+                    data: data,
+                    // dataType:"json",
+                    processData: false, // 告诉jQuery不要去处理发送的数据 
+                    contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+                    success: function (result) {
+                        console.log(result);
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>
