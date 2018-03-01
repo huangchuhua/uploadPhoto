@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!--content="IE=edge" 通知 IE 采用其所支持的最新的模式。-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--content="webkit" 让部分国产浏览器（360）默认采用高速模式渲染页面。-->
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>上传图片</title>
+    <!--公共样式开始-->
+    <link rel="stylesheet" href="../assets/js/webuploader/webuploader.css">
+    <link rel="stylesheet" href="../assets/js/webuploader/style.css">
+    <link rel="stylesheet" href="../assets/iconfont/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/common_ui.css" />
+    <!--公共样式结束-->
+    <!--自定义样式开始 -->
+    <link rel="stylesheet" href="../assets/css/composition.css" />
+    <!-- 自定义样式结束 -->
+
+
+    <!--HTML5 shim and Respond.js 为了IE8支持HTML5元素和媒体查询-->
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        /*展示图片的盒子*/
+
+        .uploadImgBox {
+            display: inline-block;
+        }
+
+        .uploadImgBox .uploadList {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            margin-right: 10px;
+            text-align: center;
+            vertical-align: middle;
+            position:relative;
+        }
+
+        .uploadImgBox .uploadList img {
+            display: inline-block;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /*鼠标悬浮显示删除图标*/
+        .deleteImg{
+            /* display:none; */
+            position:absolute;
+            top:0;
+            left:0;
+            width:30px;
+            height: 30px;
+            background:url("../assets/images/img_delet.png") no-repeat;
+            background-color:rgba(255, 0, 0, 0.7);
+        }
+        
+        /*点击选取图片按钮*/
+
+        .inputWrap {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            border: 1px solid #ccc;
+            vertical-align: middle;
+            position: relative;
+        }
+
+        .selectImg {
+            width: 80px;
+            height: 80px;
+            outline: none;
+            opacity: 0;
+            filter: Alpha(opacity=0);
+        }
+
+        .selectImgIcon {
+            font-size: 30px;
+            color: #ccc;
+
+        }
+
+        .inputWrap label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -21px;
+            margin-left: -15px;
+        }
+
+
+        /*图片放大后的样式*/
+
+        .layui-layer-page .layui-layer-content {
+            text-align: center;
+        }
+
+        .layui-layer-page .layui-layer-content img {
+            display: inline-block;
+            height: 97%;
+            width: 98%;
+        }
+
+
+        .uploading {
+            margin-top: 10px;
+        }
+
+        /*图片上传成功后的样式*/
+        .imgLoaded{
+            width: 16px;
+            height: 16px;
+            position:absolute;
+            right:0;
+            bottom:0;
+            background:url("../assets/images/iconfont-zhengque.png") no-repeat;
+        }
+
+        /*使用webuploader插件部分开始*/
+        /* .uploadImg-icon{
+            display:inline-block;
+            width: 16px;
+            height: 16px;
+            position:absolute;
+            top:2px;
+            right:0;
+        } */
+        /*图片上传成功后的标记*/
+        /* .uploadImg-state-done{
+            background:url("../assets/img/common_img/icon_zqtb.png") no-repeat;
+        }
+        .file-item .info{
+            bottom:-16px;
+        } */
+
+        /*使用webuploader插件部分结束*/
+    </style>
+</head>
+
+<body>
+    <div class="ibox_cs">
+        <h2>一、使用原生js的fileReader(ie10以下不支持）</h2>
+        <pre>
+            <h3>1、页面结构：</h3>
+            <pre>
+                &lt;form action=&quot;&quot; &gt;
+                    &lt;div class=&quot;uploadImgBox&quot; id=&quot;uploadImgBox&quot;&gt;&lt;/div&gt;
+                    &lt;div class=&quot;inputWrap&quot;&gt;
+                        &lt;label for=&quot;selectImg&quot;&gt;
+                                &lt;i class=&quot;iconfont icon-tianjia selectImgIcon&quot;&gt;&lt;/i&gt;
+                        &lt;/label&gt;
+                            &lt;input type=&quot;file&quot; name=&quot;inputImg&quot;  multiple id=&quot;selectImg&quot; class=&quot;selectImg&quot;&gt;
+                    &lt;/div&gt;
+                    &lt;br/&gt;
+                    &lt;button type=&quot;button&quot; id=&quot;uploading&quot; class=&quot;uploading&quot;&gt;上传&lt;/button&gt;
+                &lt;/form&gt;
+            </pre>
+        <h3>2、页面样式：</h3>
+        <p>
+            /*展示图片的盒子*/ .uploadImgBox{ display: inline-block; } .uploadImgBox .uploadList{ display: inline-block; width: 80px; height:
+            80px; margin-right:10px; text-align: center; vertical-align:middle; } .uploadImgBox .uploadList img{ display:
+            inline-block; max-width:100%; max-height: 100%; } /*点击选取图片按钮*/ .inputWrap{ display: inline-block; width: 80px;
+            height: 80px; border:1px solid #ccc; vertical-align:middle; position:relative; } .selectImg{ width: 80px; height:
+            80px; outline: none; opacity: 0; filter:Alpha(opacity=0); } .selectImgIcon{ font-size: 30px; color:#ccc; } label{
+            position:absolute; top:50%; left:50%; margin-top:-21px; margin-left:-15px; } /*图片放大后的样式*/ .layui-layer-page .layui-layer-content
+            { text-align: center; } .layui-layer-page .layui-layer-content img { display: inline-block; height: 97%; width:
+            98%; } .uploading{ margin-top:10px; }
+        </p>
+        <h3>3、引入jquery,layer.js(封装上传图片的方法用到此些插件）</h3>
+        <h3>4、引入uploadImg.js:</h3>
+        <p>
+            调用uploadImg（）方法，参数如下： * 1、imgBox---展示图片的div的id； * 2、input---input标签的id,监听选择图片的事件； * 3、uploading---上传按钮的id，用来监听上传事件； * 4、url---上传图片的服务器地址；
+            * 5、callback---图片上传成功后的操作（回调）；
+        </p>
+        <h3>如下案例：</h3>
+        <p>
+            $(function(){ var url="../uploadImg.php"; var tips=function(){layer.msg('上传成功')}; uploadImg("uploadImgBox","selectImg","uploading",url,tips);
+            })
+
+        </p>
+        </pre>
+        <form action="">
+            <div class="uploadImgBox" id="uploadImgBox"></div>
+            <div class="inputWrap">
+                <label for="selectImg">
+                    <i class="iconfont icon-tianjia selectImgIcon"></i>
+                </label>
+                <input type="file" name="inputImg" multiple id="selectImg" class="selectImg">
+            </div>
+            <br/>
+            <button type="button" id="uploading" class="uploading">上传</button>
+        </form>
+    </div>
+    <div class="ibox_cs">
+        <h2>二、使用webuploader插件（手动上传）</h2>
+        
+                <div id="container">
+                    <!--头部，相册选择和格式选择-->
+                    <div id="uploader">
+                        <div class="queueList">
+                            <div id="dndArea" class="placeholder">
+                                <div id="filePicker"></div>
+                            </div>
+                        </div>
+                        <div class="statusBar" style="display:none;">
+                            <div class="progress">
+                                <span class="text">0%</span>
+                                <span class="percentage"></span>
+                            </div><div class="info"></div>
+                            <div class="btns">
+                                <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+    
+
+    <script src="../assets/js/jquery-1.11.1.js"></script>
+    <script src="../assets/js/webuploader/webuploader.js"></script>
+    <script src="../assets/js/webuploader/upload.js"></script>
+
+    <script src="../assets/js/layer/layer.js"></script>
+    <script src="../assets/js/uploadImg.js"></script>
+    <script>
+        $(function () {
+            /*使用js的fileReader*/
+            var url = "../uploadImg.php";
+            var tips = function () {
+                layer.msg('上传成功')
+            };
+            uploadImg("uploadImgBox", "selectImg", "uploading", url, tips);
+
+
+            
+        })
+    </script>
+</body>
+
+</html>

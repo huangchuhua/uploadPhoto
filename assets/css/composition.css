@@ -1,0 +1,64 @@
+@charset "utf-8";
+/*
+*  created 20180130
+*  descr   div左右布局样式
+*/
+
+.composition{
+    min-height: 50px;
+    border:1px solid #ccc;
+    background-color:#dedede
+}
+/*一、左右结构（用%）*/
+.composition_fl_20{
+    width: 20%;
+}
+.composition_fr_78{
+    width: 78%;
+}
+.composition_fl_49{
+    width: 49%;
+}
+.composition_fr_49{
+    width: 49%;
+}
+.composition_fl_78{
+    width: 78%;
+}
+.composition_fr_20{
+    width: 20%;
+}
+
+/*二、左右结构（一边固定宽度，另一边自适应）*/
+.composition_re{
+    position:relative;
+}
+.composition_st_l_200{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 200px;
+}
+.composition_aj_l_220{
+    margin-left:220px;
+}
+
+/*三、左中右结构（左右固定定位，中间自适应）*/
+.composition_aj_r_170{
+    margin-right:170px;
+}
+.composition_aj_l_120{
+    margin-left:120px;
+}
+.composition_st_l_100{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100px;
+}
+.composition_st_r_150{
+    position: absolute;
+    top:0;
+    right:0;
+    width: 150px;
+}

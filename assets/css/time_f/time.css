@@ -1,0 +1,79 @@
+		.ranges{
+			float:left;
+			width:28%;
+		}
+		.daterangepicker .ranges{
+			width:150px;
+		}
+		.daterangepicker .ranges li{
+			width:40%;
+			float:left;
+			margin-right:15px;
+			color:#02c8a0;
+		}
+		.daterangepicker .ranges li.active, .daterangepicker .ranges li:hover{
+	    background:#02c8a0;
+	    border:1px solid #02c8a0;
+	    color: #fff;
+	   }
+	    .show-calendar.daterangepicker .calendar{
+	    /*	float:left;*/
+	    }
+	    .dropdown-menu.daterangepicker{
+	    	width:35%;
+	    	min-width:20%;
+	    }
+	     .daterangepicker .calendar {
+		   display:block;
+		   float:left;
+		    }
+		 .btn-default{
+		 	color: #02c8a0;
+		 	border:none;
+		 }
+		.btn-default:hover{
+		 	color: #02c8a0;
+		 }
+		.pull-right{
+			color:#333;
+			border:1px solid #ccc;
+		}
+		.pull-right:hover{
+			color:#333;
+		}
+        .btn-default.active, .btn-default:active, .open>.dropdown-toggle.btn-default{
+        	outline:none ;
+        	border:none;
+        	background-color:none;
+        }
+/*        .input-group{
+        	float:left;
+        }*/
+        .input_gp{
+        	width:100%;
+        	padding:20px;
+        }
+       .time_f{
+       	line-height:35px;
+       	margin-right:20px;
+       float:left;
+       }
+       .input-group{
+       	margin-bottom:0;
+       }
+       .btn{
+       	float:left;
+       }
+    .daterangepicker td.active, .daterangepicker td.active:hover{
+      	background-color:#02c8a0;
+      }
+    .daterangepicker .daterangepicker_input{
+    	width:234px;
+    	float:left;
+    }
+    .daterangepicker_endt_input{
+    	margin-left:10px;
+    }
+    .daterangepicker .daterangepicker_stard_input{
+    	margin-left:176px;
+    }

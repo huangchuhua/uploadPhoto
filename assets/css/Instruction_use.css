@@ -1,0 +1,67 @@
+.Center_content{
+	padding:20px;
+	background: #fff;
+}
+.prettyprint{
+	padding: 8px;
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
+    
+}
+pre {
+    display: block;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+pre{
+	margin-top:10px ;
+}
+.ul_mar_l{
+	margin-left: 232px;
+} 
+#ui_layer{
+	display:none ;
+}
+.ui_fn_16{
+	color:#000;
+	font-size:16px ;
+}
+.text_write{
+	padding: 20px;
+    background-color: #FFFFFF;
+    position: relative;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.Modular_css{
+	border-radius:4px ;
+	border:1px solid #e5e5e5;
+	padding:15px;
+	margin-bottom: 20px;
+}
+.h3_title{
+	font-weight: 700;
+}
+
+/*时间范围插件按钮样式*/
+.btn_time{
+	min-width:80px;
+	line-height: 36px;
+	background-color:#02c8a0;
+	border-radius:5px;
+	border:none;
+	color:#fff;
+}
+.btn_time a{
+	line-height: 36px;
+	color:#fff;
+}
